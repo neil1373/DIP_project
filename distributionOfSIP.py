@@ -4,23 +4,23 @@ import random
 
 def SIPassignment(img, share1, share2, share3, Z0):
 	
-	c0 = np.array([[0,0,1,1],[0,1,0,1],[0,1,1,0]])
-	c1 = np.array([[1,1,0,0],[1,0,1,0],[1,0,0,1]])
-	
 	img_height, img_width = img.shape
 	m, n = share1.shape
 	
 	
 	for i in range(img_height):
 		for j in range(img_width):
-			location = findSIP(Z0)
+			location = findSIP(Z0, i*3, j*3)
 			assign(share1, share2, share3, img[i][j], location)
 
 
-	return 0
+	return
 
 def assign(share1, share2, share3, pixelvalue, location):
 	
+	c0 = np.array([[0,0,1,1],[0,1,0,1],[0,1,1,0]])
+	c1 = np.array([[1,1,0,0],[1,0,1,0],[1,0,0,1]])
+
 	if (pixelvalue == 0):
 		M = c0
 	else:
@@ -61,7 +61,7 @@ def assign(share1, share2, share3, pixelvalue, location):
 	return
 
 
-def findSIP(Z0):
+def findSIP(Z0, i, j):
 	location = []
 	for x in range(i, i+3):
 		for y in range(j, j+3):

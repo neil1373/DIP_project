@@ -1,9 +1,17 @@
 import numpy as np
 from numba import jit
-# from distributionOfSIP import SIPassignment
 
 @jit
-def error_diffusion(img, r, ensure = False):
+def count(img, i, j):
+	ret = 0
+	for x in range(3):
+		for y in range(3):
+			if (img[i+x][j+y] == 255):
+				ret += 1
+	return ret
+
+@jit
+def error_diffusion(img, r = 4, ensure = False):
 	img_height, img_width = img.shape
 	thres = 0.5
 	F = img / 255
@@ -36,16 +44,34 @@ def error_diffusion(img, r, ensure = False):
 	if (ensure):
 		for i in range(0, img_height, 3):
 			for j in range(0, img_width, 3):
-				SIP = 0
+				SIP = count(G, i, j)
 				flag = False
-				for x in range(3):
-					if (flag):
-						break
-					for y in range(3):
-						if (img[i+x][j+y] == 255):
-							SIP += 1
-						if (SIP == r):
-							flag = True
+				if (SIP < 4):
+					# constrained to 1s
+					for x in range(i+2, i-1, -1):
+						if (flag):
 							break
+						for y in range(j+2, j-1, -1):
+							if (G[x][y] == 0):
+								G[x][y] = 255
+								SIP += 1
+								if (SIP == 4):
+									flag = True
+									break
+
+				elif (SIP > 4):
+					# constrained to 0s
+					for x in range(i+2, i-1, -1):
+						if (flag):
+							break
+						for y in range(j+2, j-1, -1):
+							if (G[x][y] == 255):
+								G[x][y] = 0
+								SIP -= 1
+								if (SIP == 4):
+									flag = True
+									break	
 
 	return G
+
+
