@@ -20,6 +20,10 @@ def assign(share1, share2, share3, pixelvalue, location):
 	
 	c0 = np.array([[0,0,1,1],[0,1,0,1],[0,1,1,0]])
 	c1 = np.array([[1,1,0,0],[1,0,1,0],[1,0,0,1]])
+	
+	c0 *= 255
+	c1 *= 255
+
 
 	if (pixelvalue == 0):
 		M = c0
