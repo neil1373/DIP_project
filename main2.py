@@ -27,7 +27,9 @@ def main():
 	n = 3
 	q = 9
 	r = 4
-
+	
+	img_scale3x = scaleImg(img)
+	cv2.imwrite("output/input_grayscale3x.png", img_scale3x)
 	img = error_diffusion(img)
 	cv2.imwrite("output2/input_Halfton.png", img)
 
@@ -53,6 +55,10 @@ def main():
 	output = combineShares(img_share1S, img_share2S, img_share3S)
 	cv2.imwrite("output2/secretImg.png", output)
 	
-	print("PSNR:", PSNR(output, cv_img), "dB")
+	print("PSNR:", PSNR(output, img_scale3x), "dB")
+	print("PSNR:", PSNR(output, img_share1S), "dB")
+	print("PSNR:", PSNR(output, img_share2S), "dB")
+	print("PSNR:", PSNR(output, img_share3S), "dB")
+
 if __name__ == "__main__":
 	main()

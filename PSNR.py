@@ -6,6 +6,7 @@ from numba import jit
 def PSNR(noise, original):
 	height = original.shape[0]
 	width = original.shape[1]
+	# print(noise.shape, original.shape)
 	MSE = 0
 	for i in range(height):
 		for j in range(width):
