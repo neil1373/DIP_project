@@ -15,8 +15,12 @@ def combineShares(share1, share2, share3):
 			# TODO: fix this!
 			thres[i][j] = 0.25 + 0.33*0.25*(img[i][j-1]+img[i][j-2]+img[i][j-3])
 			if img[i][j] > thres[i][j]:
-				output[i][j] = 0 # or 255?
+				output[i][j] = 0
 			else:
-				output[i][j] = 255 # or 0?
+				output[i][j] = 255
+
+
+
+
 
 	return output
