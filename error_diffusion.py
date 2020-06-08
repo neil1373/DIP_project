@@ -28,10 +28,10 @@ def error_diffusion(img, r = 4, ensure = False):
 				error[i,j] = F[i,j]
 			for m in range(3):
 				for n in range(3):
-					try:
-					# if ((i + m - 1) >= 0 and (i + m - 1) < img_height and (j + n - 1) >= 0 and (j + n - 1) < img_width):
+					# try:
+					if ((i + m - 1) >= 0 and (i + m - 1) < img_height and (j + n - 1) >= 0 and (j + n - 1) < img_width):
 						F[i+m-1, j+n-1] += error[i,j] * floyd_mask[m,n]
-					except:
+					# except:
 						pass
 
 	G = np.zeros((img_height, img_width))

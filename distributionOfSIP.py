@@ -1,7 +1,9 @@
 import numpy as np
 import random
+from numba import jit
 
 
+@jit
 def SIPassignment(img, share1, share2, share3, Z0):
 	
 	img_height, img_width = img.shape
@@ -16,6 +18,7 @@ def SIPassignment(img, share1, share2, share3, Z0):
 
 	return
 
+@jit
 def assign(share1, share2, share3, pixelvalue, location):
 	
 	c0 = np.array([[0,0,1,1],[0,1,0,1],[0,1,1,0]])

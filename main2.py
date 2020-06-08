@@ -1,12 +1,15 @@
 import numpy as np
 import cv2
 import os
+from numba import jit
 from error_diffusion import error_diffusion
 from scaleImg import scaleImg
 from distributionOfSIP import SIPassignment
 from combineShares import combineShares
+from PSNR import PSNR
 
-if __name__ == "__main__":
+@jit
+def main():
 	img = cv2.imread("sample2/NTUlogo.png", cv2.IMREAD_GRAYSCALE)
 	img_share1 = cv2.imread("sample2/input1.jpg", cv2.IMREAD_GRAYSCALE)
 	img_share2 = cv2.imread("sample2/input2.jpg", cv2.IMREAD_GRAYSCALE)
@@ -49,3 +52,7 @@ if __name__ == "__main__":
 
 	output = combineShares(img_share1S, img_share2S, img_share3S)
 	cv2.imwrite("output2/secretImg.png", output)
+	
+	print("PSNR:", PSNR(output, cv_img), "dB")
+if __name__ == "__main__":
+	main()

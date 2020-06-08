@@ -1,5 +1,7 @@
 import numpy as np
+from numba import jit
 
+@jit
 def scaleImg(img, p = 3):
 	m, n = img.shape
 	output = np.zeros((m*3, n*3))
