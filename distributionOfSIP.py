@@ -29,9 +29,9 @@ def assign(share1, share2, share3, pixelvalue, location):
 
 
 	if (pixelvalue == 0):
-		M = c0
-	else:
 		M = c1
+	else:
+		M = c0
 
 	r = random.randint(1, 6)
 	if (r == 1):

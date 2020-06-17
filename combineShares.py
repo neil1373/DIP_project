@@ -1,5 +1,7 @@
 import numpy as np
+from numba import jit
 
+@jit
 def combineShares(share1, share2, share3):
 	m, n = share1.shape
 

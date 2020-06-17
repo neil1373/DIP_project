@@ -29,7 +29,7 @@ def main():
 	r = 4
 	
 	img_scale3x = scaleImg(img)
-	cv2.imwrite("output/input_grayscale3x.png", img_scale3x)
+	cv2.imwrite("output2/input_grayscale3x.png", img_scale3x)
 	img = error_diffusion(img)
 	cv2.imwrite("output2/input_Halfton.png", img)
 
