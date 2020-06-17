@@ -5,7 +5,9 @@
 * B06902002　沈郁鈞
 
 ## Execution
+* First group
 > $ python3 main.py
+* Second group
 > $ python3 main2.py
 
 ## Results
